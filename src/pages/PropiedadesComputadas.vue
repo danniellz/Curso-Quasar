@@ -1,23 +1,42 @@
 <template>
-  <div>
-    <h4>Propiedades computadas</h4>
-    <q-input v-model="nuevaTarea"></q-input>
-    <q-btn @click="agregar">Agregar</q-btn>
-    <p>{{ tareas }}</p>
-    <p
-      v-for="(item, key) in tareasPendientes"
-      :key="key"
-      :class="{ 'bg-grey': esPar(key) }"
-    >
-      {{ item.nombre }} - {{ item.hecho }} - {{ key }}
-      <q-btn @click="eliminar(item)">del</q-btn>
-      <q-toggle v-model="item.hecho"></q-toggle>
-    </p>
-    <p>Terminadas: {{ contaTerminadas }}</p>
-    <p>
-      Ocultar tareas completadas:
-      <q-toggle v-model="ocultarCompletados"></q-toggle>
-    </p>
+  <h4>Propiedades computadas</h4>
+  <div class="flex-right q-pa-lg">
+    <div class="row q-ma-sm">
+      <div class="col-8 col-sm-2">
+        <q-input v-model="nuevaTarea" placeholder="Escribe nombre"></q-input>
+      </div>
+      <div class="col-4 col-sm-2" align="center">
+        <q-btn @click="agregar">Agregar</q-btn>
+      </div>
+      <div class="col-12 col-sm-4">
+        <p>{{ tareas }}</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="tabla">
+        <p
+          class="q-ma-sm"
+          v-for="(item, key) in tareasPendientes"
+          :key="key"
+          :class="{ 'bg-blue text-white': esPar(key) }"
+        >
+          {{ item.nombre }} - {{ item.hecho }} - {{ key }}
+
+          <q-toggle v-model="item.hecho"></q-toggle>
+          <q-btn @click="eliminar(item)">del</q-btn>
+        </p>
+      </div>
+
+      <div class="bg-blue text-white q-ma-sm">
+        <p>Terminadas: {{ contaTerminadas }}</p>
+
+        <p>
+          Ocultar tareas completadas:
+          <q-toggle v-model="ocultarCompletados"></q-toggle>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
