@@ -72,9 +72,14 @@ const routes = [
     ],
   },
   {
-    path: "/QuasarListas",
+    path: "/quasarlistas",
     component: () => import("layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/QuasarListas.vue") }],
+  },
+  {
+    path: "/modal",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("pages/QuasarModal.vue") }],
   },
 
   // Always leave this as last one,
