@@ -57,6 +57,20 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/GridDiseno.vue") }],
   },
+  {
+    path: "/quasarbotones",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/QuasarBotones.vue") },
+    ],
+  },
+  {
+    path: "/conductores/perfil/abc",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/RutasParametros.vue") },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it
