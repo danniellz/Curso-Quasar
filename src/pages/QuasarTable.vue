@@ -1,17 +1,39 @@
 <template>
-  <div class="q-pa-md">
-    <q-table title="Treats" :rows="rows" :columns="columns" row-key="name">
-    </q-table>
-  </div>
+  <div>
+    <div class="q-pa-md">
+      <!--Primera tabla-->
+      <q-table
+        title="Treats"
+        :rows="rows"
+        :columns="columns"
+        row-key="name"
+        :filter="filter"
+      >
+        <!--TOP slot, boton y filtrado-->
+        <template v-slot:top>
+          <q-btn color="primary" label="Boton 1" />
+          <q-space />
+          <q-input debounce="300" color="primary" v-model="filter">
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+        </template>
+        <!--/TOP slot, boton y filtrado/-->
+      </q-table>
+    </div>
 
-  <div class="q-pa-md">
-    <q-table title="Tabla" :rows="rows2" :columns="columns2" row-key="name2">
-    </q-table>
+    <div class="q-pa-md">
+      <q-table title="Tabla" :rows="rows2" :columns="columns2" row-key="name2">
+      </q-table>
+    </div>
   </div>
 </template>
 
 <script setup>
-//Primera tabla
+import { ref } from "vue";
+const filter = ref("");
+//****************Primera tabla****************
 //Columnas
 const columns = [
   {
@@ -49,8 +71,8 @@ const columns = [
     sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
 ];
-//Filas
-const rows = [
+
+const originalRows = [
   {
     name: "Frozen Yogurt",
     calories: 159,
@@ -152,13 +174,15 @@ const rows = [
     iron: "6%",
   },
 ];
+//Filas
+const rows = ref([...originalRows]);
 
-//Segunda tabla
+//****************Segunda tabla****************
 //Columnas
 const columns2 = [
   {
     name2: "columna1",
-    label: "Columna 1",
+    label: "Columna 1 Label",
     align: "left",
     sortable: true,
     field: (row) => row.name2,
@@ -167,7 +191,7 @@ const columns2 = [
   },
   {
     name2: "columna2",
-    label: "Columna 2",
+    label: "Columna 2 Label",
     field: "columna2",
     align: "center",
     sortable: true,
