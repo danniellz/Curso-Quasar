@@ -86,6 +86,11 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/QuasarTable.vue") }],
   },
+  {
+    path: "/inputs",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("pages/QuasarInputs.vue") }],
+  },
 
   // Always leave this as last one,
   // but you can also remove it
