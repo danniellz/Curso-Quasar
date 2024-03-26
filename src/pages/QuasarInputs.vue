@@ -13,23 +13,23 @@
         />
       </div>
 
-      <!--Mask es un patron para las reglas-->
+      <!--Mask puede forzar a introducir formato específico-->
       <div class="col-12 col-md-6 q-pa-md">
         <q-input
           outlined
           rounded
-          color="white"
+          color="orange"
           v-model="text"
           label="Carnet"
           bottom-slots
           hint="Este es un hint"
           placeholder="Placeholder"
-          mask="AAAAAAA"
+          mask="SSSSSSSSSS"
           :rules="[
-            (val) => !!val || 'Este campo es requerido',
+            (val) => !!val || 'Este campo es requerido', //Comprobar que el campo no este vacio, si lo esta, mostrar msg
             (val) => val.length > 6 || 'El carnet debe tener 7 caracteres',
           ]"
-          ref="carnerRef"
+          ref="carnetRef"
         >
           <!--Icono izquierda-->
           <template v-slot:prepend>
@@ -38,6 +38,11 @@
           <!--Icono derecha-->
           <template v-slot:append>
             <q-icon name="close" @click="text = ''" class="cursor-pointer" />
+            <q-icon
+              name="send"
+              @click="enviarFormulario"
+              class="cursor-pointer"
+            />
           </template>
         </q-input>
       </div>
@@ -97,7 +102,27 @@
 
 <script setup>
 import { ref } from "vue";
+import { useQuasar } from "quasar";
+const $q = useQuasar();
 
 const text = ref("");
 const isPwd = ref("false");
+const carnetRef = ref(null);
+
+function enviarFormulario() {
+  carnetRef.value.validate();
+  if (carnetRef.value.hasError) {
+    $q.notify({
+      color: "negative",
+      message: "El formulario tiene errores",
+      icon: "report_problem",
+    });
+  } else {
+    $q.notify({
+      color: "positive",
+      message: "El formulario no tiene errores",
+      icon: "check",
+    });
+  }
+}
 </script>
