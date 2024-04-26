@@ -26,7 +26,9 @@
           placeholder="Placeholder"
           mask="SSSSSSSSSS"
           :rules="[
-            (val) => !!val || 'Este campo es requerido', //Comprobar que el campo no este vacio, si lo esta, mostrar msg
+            //Comprobar que el campo no este vacio, si lo esta, mostrar msg
+            (val) => !!val || 'Este campo es requerido',
+            //Comprobar que el campo tenga mas de 6 caracteres, si no lo tiene, mostrar msg
             (val) => val.length > 6 || 'El carnet debe tener 7 caracteres',
           ]"
           ref="carnetRef"

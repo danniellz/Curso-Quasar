@@ -91,6 +91,11 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/QuasarInputs.vue") }],
   },
+  {
+    path: "/combos",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("pages/QuasarCombos.vue") }],
+  },
 
   // Always leave this as last one,
   // but you can also remove it
